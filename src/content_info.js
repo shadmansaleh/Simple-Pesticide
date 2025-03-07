@@ -75,15 +75,21 @@ function removeRaisedBorder() {
   }
 }
 
-// CSS for raised border (add this style somewhere in your code)
-const style = document.createElement("style");
-style.innerHTML = `
-  .pesticide-37-highlighted {
-    border: 2px solid #888 !important;  /* Thicker border for more prominence */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important;  /* More pronounced raised effect */
-  }
-`;
-document.head.appendChild(style);
+// Check if the style element already exists in the document
+if (!document.getElementById("pesticide-37-style")) {
+  // Create a style element with a unique ID
+  const style = document.createElement("style");
+  style.id = "pesticide-37-style"; // Set a unique ID to avoid duplication
+  style.innerHTML = `
+    .pesticide-37-highlighted {
+      border: 2px solid #888 !important;  /* Thicker border for more prominence */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important;  /* More pronounced raised effect */
+    }
+  `;
+
+  // Append the style element to the head of the document
+  document.head.appendChild(style);
+}
 
 // Call toggle_infobox to initialize the feature
 toggle_infobox();
