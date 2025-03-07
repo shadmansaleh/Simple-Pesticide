@@ -8,6 +8,10 @@
 - **Dynamic Updates:** Borders automatically adjust when new elements are added to the DOM.
 - **Element Information on Hover:** When pressing **Shift** and hovering over an element, an info box displays the element's tag name, classes, and styles (excluding border styles).
 
+### Screenshots
+
+![ss-pestacide](https://github.com/user-attachments/assets/4dcf283e-1a5d-4fa5-9729-543245428407)
+
 ### Installation
 
 1. Clone the repository or download the extension files.
