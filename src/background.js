@@ -1,4 +1,4 @@
-chrome.action.onClicked.addListener(async (tab) => {
+async function toggle_pesticide(tab) {
   try {
     if (
       !tab.url ||
@@ -33,7 +33,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   } catch (err) {
     console.error("Simple Pesticide: Error toggling extension ", err);
   }
-});
+}
 
 function disableFeatures() {
   document.querySelectorAll("*").forEach((el) => (el.style.border = ""));
@@ -50,3 +50,18 @@ function disableFeatures() {
 
   document.removeEventListener("mousemove", window.handleElementHover);
 }
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: "togglePesticide",
+    title: "Toggle Simple Pesticide",
+    contexts: ["all"],
+  });
+});
+
+chrome.action.onClicked.addListener(toggle_pesticide);
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (info.menuItemId === "togglePesticide") {
+    await toggle_pesticide(tab);
+  }
+});
