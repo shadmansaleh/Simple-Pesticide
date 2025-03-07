@@ -12,6 +12,11 @@
 
 ![ss-pestacide](https://github.com/user-attachments/assets/4dcf283e-1a5d-4fa5-9729-543245428407)
 
+### Why?
+
+I found pesticide quite useful for checkout layout states at a glance.
+But it stoped working with Manifest-v3. So I decided to write it on my own.
+
 ### Installation
 
 1. Clone the repository or download the extension files.
