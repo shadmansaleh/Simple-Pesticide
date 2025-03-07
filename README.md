@@ -13,7 +13,8 @@
 1. Clone the repository or download the extension files.
 
    ```bash
-   git clone https://github.com/shadmansaleh/simple-pesticide.git
+   git clone https://github.com/shadmansaleh/Simple-Pesticide
+
    ```
 
 2. Open the Chrome Extensions page:  

@@ -17,7 +17,7 @@ function applyBorders(element, depth = 0, usedColors = {}) {
     : colors[depth % colors.length];
 
   element.setAttribute("data-border-color", color);
-  element.style.border = `2px solid ${color}`;
+  element.style.border = `1px solid ${color}`;
   usedColors[element] = color;
 
   Array.from(element.children).forEach((child) =>
