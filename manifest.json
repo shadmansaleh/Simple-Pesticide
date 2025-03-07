@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "simple pesticide",
+  "name": "Simple Pesticide",
   "version": "1.0",
   "description": "Adds css border to elements on page for debugging",
   "permissions": [
