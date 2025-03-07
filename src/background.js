@@ -8,11 +8,11 @@ chrome.action.onClicked.addListener(async (tab) => {
   if (newState) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ["content_borders.js"],
+      files: ["src/content_borders.js"],
     });
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ["content_info.js"],
+      files: ["src/content_info.js"],
     });
   } else {
     chrome.scripting.executeScript({

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "simple pesticide",
   "version": "1.0",
-  "description": "Adds different border colors based on element depth.",
+  "description": "Adds css border to elements on page for debugging",
   "permissions": [
     "storage",
     "scripting"
@@ -11,7 +11,7 @@
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
   "action": {
     "default_title": "Inject Borders"
