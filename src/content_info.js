@@ -1,12 +1,19 @@
 function handleElementHover(event) {
   if (!event.target || !event.shiftKey) {
     window.infoBox.style.display = "none";
+    removeRaisedBorder();
     return;
   }
 
   let element = event.target;
   let tagName = element.tagName.toLowerCase();
-  let classList = element.className ? `"${element.className}"` : "None";
+  let classList = element.className
+    ? element.className
+      .split(" ")
+      // Exclude the pesticide-37-highlighted class
+      .filter((className) => className !== "pesticide-37-highlighted")
+    : [];
+  let classText = classList.length > 0 ? classList.join(" ") : "None";
 
   let styles = element.style.cssText
     .split(";")
@@ -15,8 +22,10 @@ function handleElementHover(event) {
     .join("; ");
   let styleText = styles ? `"${styles}"` : "None";
 
-  window.infoBox.innerText = `${tagName} { classes: ${classList}, style: ${styleText} }`;
+  window.infoBox.innerText = `${tagName} { classes: ${classText}, style: ${styleText} }`;
   window.infoBox.style.display = "block";
+
+  addRaisedBorder(element); // Add raised border effect on hover
 }
 
 function toggle_infobox() {
@@ -24,6 +33,7 @@ function toggle_infobox() {
     window.infoBox.remove();
     window.infoBox = null;
     document.removeEventListener("mousemove", handleElementHover);
+    removeRaisedBorder(); // Remove raised border when infobox is disabled
     return;
   } else {
     window.infoBox = document.createElement("div");
@@ -42,4 +52,38 @@ function toggle_infobox() {
   }
 }
 
+// Function to add raised border to the hovered element
+function addRaisedBorder(element) {
+  if (!element.classList.contains("pesticide-37-highlighted")) {
+    const previouslyHighlighted = document.querySelector(
+      ".pesticide-37-highlighted",
+    );
+    if (previouslyHighlighted) {
+      previouslyHighlighted.classList.remove("pesticide-37-highlighted");
+    }
+    element.classList.add("pesticide-37-highlighted");
+  }
+}
+
+// Function to remove raised border when hover is removed
+function removeRaisedBorder() {
+  const highlightedElement = document.querySelector(
+    ".pesticide-37-highlighted",
+  );
+  if (highlightedElement) {
+    highlightedElement.classList.remove("pesticide-37-highlighted");
+  }
+}
+
+// CSS for raised border (add this style somewhere in your code)
+const style = document.createElement("style");
+style.innerHTML = `
+  .pesticide-37-highlighted {
+    border: 2px solid #888 !important;  /* Thicker border for more prominence */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important;  /* More pronounced raised effect */
+  }
+`;
+document.head.appendChild(style);
+
+// Call toggle_infobox to initialize the feature
 toggle_infobox();
