@@ -7,12 +7,13 @@ function handleElementHover(event) {
 
   let element = event.target;
   let tagName = element.tagName.toLowerCase();
-  let classList = element.className
-    ? element.className
-      .split(" ")
-      // Exclude the pesticide-37-highlighted class
-      .filter((className) => className !== "pesticide-37-highlighted")
-    : [];
+  let classList =
+    typeof element.className === "string" && element.className.trim()
+      ? element.className
+        .split(" ")
+        // Exclude the pesticide-37-highlighted class
+        .filter((className) => className !== "pesticide-37-highlighted")
+      : [];
   let classText = classList.length > 0 ? classList.join(" ") : "None";
 
   let styles = element.style.cssText
