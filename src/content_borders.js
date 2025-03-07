@@ -1,3 +1,30 @@
+function applyBorders(element, depth = 0, usedColors = {}) {
+  const colors = ["red", "blue", "green", "orange", "purple"];
+  if (!element || element.nodeType !== 1) return;
+
+  let siblings = element.parentElement ? element.parentElement.children : [];
+  let siblingColors = new Set();
+
+  for (let sibling of siblings) {
+    if (usedColors[sibling]) {
+      siblingColors.add(usedColors[sibling]);
+    }
+  }
+
+  let availableColors = colors.filter((c) => !siblingColors.has(c));
+  let color = availableColors.length
+    ? availableColors[0]
+    : colors[depth % colors.length];
+
+  element.setAttribute("data-border-color", color);
+  element.style.border = `2px solid ${color}`;
+  usedColors[element] = color;
+
+  Array.from(element.children).forEach((child) =>
+    applyBorders(child, depth + 1, usedColors),
+  );
+}
+
 function toggle_borders() {
   if (window.borderObserver) {
     document.querySelectorAll("*").forEach((el) => (el.style.border = ""));
@@ -5,36 +32,6 @@ function toggle_borders() {
     window.borderObserver = null;
     return;
   } else {
-    const colors = ["red", "blue", "green", "orange", "purple"];
-
-    function applyBorders(element, depth = 0, usedColors = {}) {
-      if (!element || element.nodeType !== 1) return;
-
-      let siblings = element.parentElement
-        ? element.parentElement.children
-        : [];
-      let siblingColors = new Set();
-
-      for (let sibling of siblings) {
-        if (usedColors[sibling]) {
-          siblingColors.add(usedColors[sibling]);
-        }
-      }
-
-      let availableColors = colors.filter((c) => !siblingColors.has(c));
-      let color = availableColors.length
-        ? availableColors[0]
-        : colors[depth % colors.length];
-
-      element.setAttribute("data-border-color", color);
-      element.style.border = `2px solid ${color}`;
-      usedColors[element] = color;
-
-      Array.from(element.children).forEach((child) =>
-        applyBorders(child, depth + 1, usedColors),
-      );
-    }
-
     applyBorders(document.body);
 
     window.borderObserver = new MutationObserver((mutations) => {

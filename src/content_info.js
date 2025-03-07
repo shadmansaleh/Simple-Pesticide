@@ -1,3 +1,24 @@
+function handleElementHover(event) {
+  if (!event.target || !event.shiftKey) {
+    window.infoBox.style.display = "none";
+    return;
+  }
+
+  let element = event.target;
+  let tagName = element.tagName.toLowerCase();
+  let classList = element.className ? `"${element.className}"` : "None";
+
+  let styles = element.style.cssText
+    .split(";")
+    .map((s) => s.trim())
+    .filter((s) => s && !s.includes("border"))
+    .join("; ");
+  let styleText = styles ? `"${styles}"` : "None";
+
+  window.infoBox.innerText = `${tagName} { classes: ${classList}, style: ${styleText} }`;
+  window.infoBox.style.display = "block";
+}
+
 function toggle_infobox() {
   if (window.infoBox) {
     window.infoBox.remove();
@@ -17,28 +38,6 @@ function toggle_infobox() {
     window.infoBox.style.display = "none";
     window.infoBox.style.zIndex = "10000";
     document.body.appendChild(window.infoBox);
-
-    function handleElementHover(event) {
-      if (!event.target || !event.shiftKey) {
-        window.infoBox.style.display = "none";
-        return;
-      }
-
-      let element = event.target;
-      let tagName = element.tagName.toLowerCase();
-      let classList = element.className ? `"${element.className}"` : "None";
-
-      let styles = element.style.cssText
-        .split(";")
-        .map((s) => s.trim())
-        .filter((s) => s && !s.includes("border"))
-        .join("; ");
-      let styleText = styles ? `"${styles}"` : "None";
-
-      window.infoBox.innerText = `${tagName} { classes: ${classList}, style: ${styleText} }`;
-      window.infoBox.style.display = "block";
-    }
-
     document.addEventListener("mousemove", handleElementHover);
   }
 }
