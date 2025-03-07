@@ -40,12 +40,12 @@ function toggle_infobox() {
     window.infoBox = document.createElement("div");
     window.infoBox.id = "pesticide-37-infobox";
     window.infoBox.style.position = "fixed";
-    window.infoBox.style.bottom = "10px";
-    window.infoBox.style.left = "10px";
+    window.infoBox.style.bottom = "24px";
+    window.infoBox.style.left = "12px";
     window.infoBox.style.padding = "8px";
     window.infoBox.style.background = "rgba(0, 0, 0, 0.8)";
     window.infoBox.style.color = "white";
-    window.infoBox.style.fontSize = "12px";
+    window.infoBox.style.fontSize = "14px";
     window.infoBox.style.borderRadius = "5px";
     window.infoBox.style.display = "none";
     window.infoBox.style.zIndex = "10000";
