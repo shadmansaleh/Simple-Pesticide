@@ -37,6 +37,7 @@ function toggle_infobox() {
     return;
   } else {
     window.infoBox = document.createElement("div");
+    window.infoBox.id = "pesticide-37-infobox";
     window.infoBox.style.position = "fixed";
     window.infoBox.style.bottom = "10px";
     window.infoBox.style.left = "10px";

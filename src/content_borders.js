@@ -3,6 +3,8 @@ function applyBorders(element, depth = 0, startTime) {
   const MAX_CHILDREN = 1000;
   const colors = ["red", "blue", "green", "orange", "purple"];
 
+  if (element.id === "pesticide-37-infobox") return; // Skip the infobox
+
   const elapsedTime = performance.now() - startTime; // Get elapsed time in milliseconds
   if (!element || element.nodeType !== 1 || elapsedTime >= TIME_LIMIT) return; // Stop if exceeded timelimit
 
